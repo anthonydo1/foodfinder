@@ -3,11 +3,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const connection = mysql.createConnection({
-    host: "localhost",
-    port: "3306",
-    user: "root",
+    host: "foodfinder.cjciu7tr27nm.us-west-1.rds.amazonaws.com",
+    user: "admin",
     password: process.env.DATABASE_PASSWORD,
-    database: "foodfinder",
+    database: "FoodFinder",
     insecureAuth : true
 });
 
@@ -17,7 +16,7 @@ connection.connect((err) => {
 });
 
 export async function addUser(user) {
-    const query = `INSERT INTO USERS (first_name, last_name, username, email, password) 
+    const query = `INSERT INTO FoodFinder.users (first_name, last_name, username, email, password) 
     VALUES(?, ?, ?, ?, ?)`;
 
     connection.query(
@@ -40,7 +39,7 @@ export async function getUsers() {
 export async function findUserByUsernameAndEmail(username, email) {
     return new Promise((resolve, reject) => {
         connection.query(
-            "SELECT * FROM USERS WHERE USERNAME = ? OR EMAIL = ?",
+            "SELECT * FROM FoodFinder.users WHERE USERNAME = ? OR EMAIL = ?",
             [username, email],
             (err, result) => {
                 if (err) console.log(err);
@@ -53,7 +52,7 @@ export async function findUserByUsernameAndEmail(username, email) {
 export async function findUserByEmail(email) {
     return new Promise((resolve, reject) => {
         connection.query(
-            "SELECT * FROM USERS WHERE EMAIL = ?",
+            "SELECT * FROM FoodFinder.users WHERE EMAIL = ?",
             [email],
             (err, result) => {
                 if (err) console.log(err);
