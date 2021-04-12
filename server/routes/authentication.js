@@ -17,6 +17,7 @@ export async function signup(req, res) {
         }
 
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        console.log(req.body.username);
         const user = {
             first: req.body.first,
             last: req.body.last,

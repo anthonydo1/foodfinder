@@ -1,8 +1,8 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import * as auth from './authentication.js';
-import * as search from './search.js';
+import * as auth from './routes/authentication.js';
+import * as search from './routes/search.js';
 import cookieParser from 'cookie-parser';
 
 const app = express();
@@ -13,10 +13,8 @@ const HOST = "0.0.0.0";
 
 
 app.use(express.json());
-app.use(cookieParser());
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
 });
