@@ -1,6 +1,13 @@
 import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function Signup() {
+    const history = useHistory();
+    const redirect = () => history.push("/login");
+
+    const [username, setUsername] = useState("");
+    const [first, setFirst] = useState("");
+    const [last, setLast] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeat, setRepeat] = useState("");
@@ -11,14 +18,17 @@ function Signup() {
 
     async function handleSubmit(event) {
         event.preventDefault();
-
+        console.log("submitted");
         const data = 
             await fetch("http://localhost:4000/signup", {
                 method: 'POST',
-                body: JSON.stringify({email: email, password: password}),
+                body: JSON.stringify({username: username, first: first, last: last, email: email, password: password}),
                 headers: {'Content-Type': 'application/json'}
+            }).then(res => {
+                if (res.status === 201) {
+                    redirect();
+                };
             });
-        console.log(data.json());
     }
 
     return (
@@ -33,6 +43,30 @@ function Signup() {
                                         <div className="col-md-12">
                                             <h3 className="text-center heading">Create an Account</h3>
                                         </div>
+                                    </div>
+                                    <div className="form-group form-primary"> 
+                                        <input 
+                                            type="text" 
+                                            className="form-control" 
+                                            placeholder="Username" 
+                                            onChange={e => setUsername(e.target.value)}    
+                                        /> 
+                                    </div>
+                                    <div className="form-group form-primary"> 
+                                        <input 
+                                            type="text" 
+                                            className="form-control" 
+                                            placeholder="First name" 
+                                            onChange={e => setFirst(e.target.value)}    
+                                        /> 
+                                    </div>
+                                    <div className="form-group form-primary"> 
+                                        <input 
+                                            type="text" 
+                                            className="form-control" 
+                                            placeholder="Last name" 
+                                            onChange={e => setLast(e.target.value)}    
+                                        /> 
                                     </div>
                                     <div className="form-group form-primary"> 
                                         <input 
@@ -63,6 +97,7 @@ function Signup() {
                                             <input 
                                                 type="submit" 
                                                 className="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" 
+                                                onClick={handleSubmit}
                                                 disabled={!validateForm()}
                                             />
                                         </div>
