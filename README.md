@@ -11,4 +11,4 @@ Directions to run project:
   - npm run devStart (runs dev environment on port 4000)
 - Change directory into client
   - npm install 
-  - npm start (starts webpack environment on port 3000)
+  - npm start (starts react environment on port 3000)
