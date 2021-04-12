@@ -9,12 +9,22 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
 
+    const checkLoggedIn = () => {
+        if (localStorage.getItem("token") !== null) {
+            setLoggedIn(true);
+            return true;
+        } else {
+            setLoggedIn(false);
+            return false;
+        }
+    };
+
     return (
         <Router>
             <Nav setLoggedIn={setLoggedIn}/>
             <Switch>
                 <Route exact path="/" render={ () => (
-                    loggedIn ? (
+                    checkLoggedIn() ? (
                         <Redirect to="/dashboard" />
                     ) : (
                         <Redirect to="/login" />
