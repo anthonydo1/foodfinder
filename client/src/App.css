@@ -1,0 +1,155 @@
+header.masthead {
+  position: relative;
+  background-color: #343a40;
+  background: url("https://images.squarespace-cdn.com/content/v1/5c5c3833840b161566b02a76/1573133725500-Y5PCN0V04I86HDAT8AT0/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/WBC_7095.jpg?format=2500w") no-repeat center center;
+  background-size: cover;
+  padding-top: 15rem;
+  padding-bottom: 15rem;
+}
+
+.overlay {
+  position: absolute;
+  background-color: #212529;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
+
+.topnav {
+  overflow: hidden;
+}
+
+.navhover {
+  position: absolute;
+  margin: 30px;
+  width: auto;
+}
+
+.fit-object {
+  object-fit: cover;
+}
+
+.card-animation{
+  transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+  cursor: pointer;
+}
+
+.card-animation:hover{
+  transform: scale(1.05);
+}
+
+.login-block {
+  margin: 30px auto;
+  min-height: 93.6vh
+}
+
+.login-block .auth-box {
+  margin: 20px auto 0;
+  max-width: 450px !important
+}
+
+.login-card {
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 5px 0 rgba(43, 43, 43, .1), 0 11px 6px -7px rgba(43, 43, 43, .1);
+  box-shadow: 0 0 5px 0 rgba(43, 43, 43, .1), 0 11px 6px -7px rgba(43, 43, 43, .1);
+  border: none;
+  margin-bottom: 30px;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  background-color: #fff
+}
+
+.card .card-block {
+  padding: 1.25rem
+}
+
+.f-80 {
+  font-size: 80px
+}
+
+.form-group {
+  margin-bottom: 1.25em
+}
+
+.form-material .form-control {
+  display: inline-block;
+  height: 43px;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 9px;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-bottom: 1px solid #ccc
+}
+
+.btn-md {
+  padding: 10px 16px;
+  font-size: 15px;
+  line-height: 23px
+}
+
+.btn-primary {
+  background-color: #4099ff;
+  border-color: #4099ff;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: all ease-in .3s;
+  transition: all ease-in .3s
+}
+
+.btn {
+  border-radius: 2px;
+  text-transform: capitalize;
+  font-size: 15px;
+  padding: 10px 19px;
+  cursor: pointer
+}
+
+.m-b-20 {
+  margin-bottom: 20px
+}
+
+.btn-md {
+  padding: 10px 16px;
+  font-size: 15px;
+  line-height: 23px
+}
+
+.heading {
+  font-size: 21px
+}
+
+#infoMessage p {
+  color: red !important
+}
+
+.btn-google {
+  color: #545454;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px 1px #ddd
+}
+
+.or-container {
+  align-items: center;
+  color: #ccc;
+  display: flex;
+  margin: 25px 0
+}
+
+.line-separator {
+  background-color: #ccc;
+  flex-grow: 5;
+  height: 1px
+}
+
+.or-label {
+  flex-grow: 1;
+  margin: 0 15px;
+  text-align: center
+}
