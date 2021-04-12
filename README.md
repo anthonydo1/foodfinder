@@ -12,3 +12,4 @@ Directions to run project:
 - Change directory into client
   - npm install 
   - npm start (starts react environment on port 3000)
+- You will need to run both the client and server at the same time for the project to work
