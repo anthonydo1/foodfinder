@@ -2,9 +2,14 @@ import React from 'react';
 import StarRatings from 'react-star-ratings';
 
 function RestaurantInfoCard(props) {
+
+    const openYelpLink = () => {
+        window.open(props.info.url, "_blank");
+    };
+
     return (
         <div className="card card-animation mt-4 shadow-sm">
-            <div className="card-body">
+            <div className="card-body" onClick={openYelpLink}>
                 <div className="row">
                     <div className="col-sm-auto">
                         <img src={props.info.photos[0]} className="rounded fit-object" width="200px" height="200px" alt=""></img>

@@ -30,7 +30,7 @@ export async function addUser(user) {
 };
 
 export async function getUsers() {
-    connection.query("SELECT * FROM USERS", (error, results, fields) => {
+    connection.query("SELECT * FROM FoodFinder.users", (error, results, fields) => {
         if (error) throw error;
         return results[0].email;
     })

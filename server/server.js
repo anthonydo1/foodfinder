@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import * as auth from './routes/authentication.js';
 import * as search from './routes/search.js';
-import cookieParser from 'cookie-parser';
 
 const app = express();
 dotenv.config();
