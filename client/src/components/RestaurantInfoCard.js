@@ -8,7 +8,7 @@ function RestaurantInfoCard(props) {
     };
 
     return (
-        <div className="card card-animation mt-4 shadow-sm">
+        <div className="card bg-dark text-white card-animation mt-4 shadow-sm">
             <div className="card-body" onClick={openYelpLink}>
                 <div className="row">
                     <div className="col-sm-auto">
@@ -21,7 +21,6 @@ function RestaurantInfoCard(props) {
                                 {props.info.location.city}, {props.info.location.state}
                             </p>
                         </div>
-                        
 
                         <h6 className="card-subtitle mb-2 text-muted">
                             <StarRatings

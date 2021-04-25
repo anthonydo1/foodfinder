@@ -5,6 +5,9 @@ function Signup() {
     const history = useHistory();
     const redirect = () => history.push("/login");
 
+    const [validUsername, setValidUsername] = useState(true);
+    const [validEmail, setValidEmail] = useState(true);
+
     const [username, setUsername] = useState("");
     const [first, setFirst] = useState("");
     const [last, setLast] = useState("");
@@ -27,9 +30,31 @@ function Signup() {
             }).then(res => {
                 if (res.status === 201) {
                     redirect();
-                };
+                } else if (res.status === 500) {
+                    setValidEmail(true);
+                    setValidUsername(false);
+                } else {
+                    setValidEmail(false);
+                    setValidUsername(true);
+                }
             });
     }
+
+    const InvalidUsername = () => {
+        return (
+            <div className="text-danger">
+                Sorry, that username's taken. Try another?
+            </div>
+        );
+    };
+
+    const InvalidEmail = () => {
+        return (
+            <div className="text-danger">
+                Sorry, that email's taken. Try another?
+            </div>
+        );
+    };
 
     return (
         <section className="login-block">
@@ -51,6 +76,7 @@ function Signup() {
                                             placeholder="Username" 
                                             onChange={e => setUsername(e.target.value)}    
                                         /> 
+                                        { validUsername ? null : <InvalidUsername />}
                                     </div>
                                     <div className="form-group form-primary"> 
                                         <input 
@@ -73,8 +99,9 @@ function Signup() {
                                             type="text" 
                                             className="form-control" 
                                             placeholder="Email" 
-                                            onChange={e => setEmail(e.target.value)}    
+                                            onChange={e => setEmail(e.target.value)}     
                                         /> 
+                                        { validEmail ? null : <InvalidEmail /> }
                                     </div>
                                     <div className="form-group form-primary"> 
                                         <input 

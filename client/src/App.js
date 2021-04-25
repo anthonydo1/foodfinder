@@ -4,6 +4,8 @@ import Nav from './components/Nav';
 import Home from './routes/Home';
 import Signup from './routes/Signup';
 import Login from './routes/Login';
+import Friends from './routes/Friends';
+import SearchPage from './routes/SearchPage';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 function App() {
@@ -33,6 +35,8 @@ function App() {
                 <Route path="/dashboard" exact component={Home}></Route>
                 <Route path="/signup" exact component={Signup}></Route>
                 <Route path="/login" exact render={ () => <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn}/> } /> 
+                <Route path="/friends" exact component={Friends}></Route>
+                <Route path="/search" exact component={SearchPage}></Route>
             </Switch>   
         </Router>
     );

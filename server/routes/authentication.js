@@ -10,11 +10,16 @@ export async function signup(req, res) {
         const data = await database
             .findUserByUsernameAndEmail(req.body.username, req.body.email);
 
+        const userFromEmail = await database.findUserByEmail(req.body.email);
+
         if (data !== undefined) {
-            console.log("Username/email already exists");
-            res.status(500).send("Username/email already exists");
-            return;
-        }
+            if (userFromEmail !== undefined) {
+                return res.status(501).send("Email already exists");  
+            } else {
+                console.log("Username exists already");
+                return res.status(500).send("Username/email already exists");
+            }  
+        };
 
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         console.log(req.body.username);
@@ -29,6 +34,7 @@ export async function signup(req, res) {
         database.addUser(user);
         res.status(201).send();
     } catch {
+        console.log("uh OH");
         res.status(500).send();
     }
 }

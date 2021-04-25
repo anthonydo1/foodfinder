@@ -153,3 +153,8 @@ header.masthead {
   margin: 0 15px;
   text-align: center
 }
+
+.btn:focus,.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
