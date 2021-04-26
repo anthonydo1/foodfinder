@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactRoundedImage from 'react-rounded-image';
 
-function FriendRequest(props) {
+function SearchFriendCard(props) {
 
     const token = localStorage.getItem("token");
+    const [sent, setSent] = useState(false);
 
-    const response = (res) => {
-        fetch("http://localhost:4000/friends/create", {
-            method: 'POST',
-            body: JSON.stringify({ decision: res, destination: props.email }),
-            headers: { 
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` 
-            }
-        });
+    const sendFriendRequest = async () => {
+        if (sent) return;
+        const data = 
+            await fetch("http://localhost:4000/friends", {
+                method: 'POST',
+                body: JSON.stringify({ destination: props.email }),
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
+                }
+            });
+        setSent(true);
     };
 
     return (
@@ -31,8 +35,12 @@ function FriendRequest(props) {
                     <div className="col text-white">
                         <h4 className="card-title">{props.first} {props.last}</h4>
                         <h6 className="card-subtitle mb-2 text-muted">{props.username}</h6>
-                        <button onClick={() => {response(true)}} type="button" className="btn btn-primary mr-2">Confirm</button>
-                        <button onClick={() => {response(false)}} type="button" className="btn btn-secondary">Delete</button>
+                        <button 
+                            onClick={sendFriendRequest} 
+                            type="button" 
+                            className={sent ? "btn mr-2 btn-success" : "btn mr-2 btn-primary"}>
+                            {sent ? "Sent" : "Send Friend Request"}
+                        </button>
                     </div>
                 </div>
 
@@ -41,4 +49,4 @@ function FriendRequest(props) {
     );
 }
 
-export default FriendRequest;
+export default SearchFriendCard;

@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
+    const [user, setUser] = useState(null);
 
     const checkLoggedIn = () => {
         if (localStorage.getItem("token") !== null) {
@@ -23,7 +24,7 @@ function App() {
 
     return (
         <Router>
-            <Nav setLoggedIn={setLoggedIn}/>
+            <Nav setLoggedIn={setLoggedIn} setUser={setUser} user={user}/>
             <Switch>
                 <Route exact path="/" render={ () => (
                     checkLoggedIn() ? (
@@ -34,7 +35,7 @@ function App() {
                 )} />
                 <Route path="/dashboard" exact component={Home}></Route>
                 <Route path="/signup" exact component={Signup}></Route>
-                <Route path="/login" exact render={ () => <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn}/> } /> 
+                <Route path="/login" exact component={Login}></Route>
                 <Route path="/friends" exact component={Friends}></Route>
                 <Route path="/search" exact component={SearchPage}></Route>
             </Switch>   

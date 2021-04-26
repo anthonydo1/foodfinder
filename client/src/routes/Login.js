@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-function Login(props) {
+function Login() {
     const history = useHistory();
     const redirect = () => history.push("/");
 
@@ -24,7 +24,7 @@ function Login(props) {
             if (res.status === 200) {
                 res.json().then((data) => {
                     localStorage.setItem("token", data.accessToken);
-                    props.setLoggedIn(true);
+                    localStorage.setItem("user", data.user);
                     redirect();
                 })
             };

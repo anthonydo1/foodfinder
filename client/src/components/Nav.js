@@ -3,17 +3,25 @@ import SearchIcon from '@material-ui/icons/Search';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import HomeIcon from '@material-ui/icons/Home';
 
-function Nav(props) {
+function Nav() {
 
     const location = useLocation().pathname;
     const active = { color: "#2196f3" };
     const inactive = { color: "#616161" };
-    
+
     const isLoggedIn = () => {
         if (localStorage.getItem('token')) {
             return true;
         }
         return false;
+    };
+
+    const getUser = () => {
+        const user = localStorage.getItem("user");
+        if (user) {
+            return user;
+        };
+        return null;
     };
 
     const history = useHistory();
@@ -22,8 +30,8 @@ function Nav(props) {
         event.preventDefault();
         if (isLoggedIn()) {
             localStorage.removeItem("token");
+            localStorage.removeItem("user");
         };
-        props.setLoggedIn(false);
         history.push("/login");
     };
 
@@ -38,8 +46,7 @@ function Nav(props) {
         <nav className="navbar navbar-dark bg-dark">
             <div className="container">
                 <a className="navbar-brand" href="/">Food Finder</a>
-                <ul className="nav justify-content-center">
-
+                <ul className="nav">
                     <li className="nav-item mr-2">
                         <a className="btn" href="/dashboard">
                             <HomeIcon fontSize="large" style={isActive("/dashboard")} />
@@ -59,10 +66,12 @@ function Nav(props) {
                     </li>
 
                 </ul>
-
-                <a className="btn btn-primary" onClick={handleLogin}>
-                    {isLoggedIn() ? "Log out" : "Login"}
-                </a>
+                <div className="text-white"> {getUser() ? "Logged in as " + getUser() + "  " : null}
+                    <a className="btn btn-primary" onClick={handleLogin}>
+                        {isLoggedIn() ? "Log out" : "Login"}
+                    </a>
+                </div>
+                
             </div>
         </nav>
     );

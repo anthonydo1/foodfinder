@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import * as auth from './routes/authentication.js';
 import * as search from './routes/search.js';
+import * as database from './routes/database.js';
 
 const app = express();
 dotenv.config();
@@ -38,15 +39,54 @@ app.post('/search', authenticateToken, (req, res) => {
     search.search(req, res);
 });
 
+app.get('/search/friends/:query', authenticateToken, async (req, res) => {
+    if (req.params.query == null || req.params.query == undefined) res.status(401).send();
+    const searchQuery = await database.findUserBySearchQuery(req.params.query);
+    console.log(searchQuery);
+    res.json(searchQuery);
+});
+
+app.get('/friends', authenticateToken, async (req, res) => {
+    const id = await database.getIdByEmail(req.email);
+    const friendRequests = await database.getFriendRequests(id);
+    let promises = [];
+    
+    for (let i = 0; i < friendRequests.length; i++) {
+        const requestData = await database.getUserById(friendRequests[i].user_id);
+        promises.push(requestData);   
+    }
+    const data = await Promise.all(promises);
+    res.json(data);
+});
+
+app.post('/friends', authenticateToken, async (req, res) => {
+    const source = await database.getIdByEmail(req.email);
+    const destination = await database.getIdByEmail(req.body.destination);
+
+    if (source !== undefined && destination !== undefined) 
+        database.createFriendRequest(source, destination, new Date());
+
+    res.status(201).send();
+});
+
+app.post('/friends/create', authenticateToken, async (req, res) => {
+    database.processFriendRequest(req.body.decision, req.email, req.body.destination);
+    res.status(201).send();
+});
+
+app.get('/friendlist', authenticateToken, async (req, res) => {
+
+});
+
 function authenticateToken(req, res, next) {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
     console.log(token);
     if (token == null) return res.sendStatus(401);
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, email) => {
         if (err) return res.sendStatus(403);
-        req.user = user;
+        req.email = email.email;
         next();
     });
 };

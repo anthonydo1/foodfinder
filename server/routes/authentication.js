@@ -22,7 +22,7 @@ export async function signup(req, res) {
         };
 
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        console.log(req.body.username);
+        
         const user = {
             first: req.body.first,
             last: req.body.last,
@@ -56,7 +56,7 @@ export async function login(req, res) {
             //     "Access-Control-Allow-Credentials": "true"
             // }).send();
 
-            res.json({ accessToken: accessToken }).send();
+            res.json({ accessToken: accessToken, user: user.username}).send();
         } else {
             res.status(401).send("Incorrect login credentials");
         }
