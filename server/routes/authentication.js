@@ -13,7 +13,8 @@ export async function signup(req, res) {
         const userFromEmail = await database.findUserByEmail(req.body.email);
 
         if (data !== undefined) {
-            if (userFromEmail !== undefined) {
+            if (userFromEmail !== null) {
+                console.log(userFromEmail);
                 return res.status(501).send("Email already exists");  
             } else {
                 console.log("Username exists already");

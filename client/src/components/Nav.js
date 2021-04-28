@@ -43,9 +43,9 @@ function Nav() {
     }
 
     return (
-        <nav className="navbar navbar-dark bg-dark">
+        <nav className="navbar bg-dark">
             <div className="container">
-                <a className="navbar-brand" href="/">Food Finder</a>
+                <a className="navbar-brand text-white" href="/">Food Finder</a>
                 <ul className="nav">
                     <li className="nav-item mr-2">
                         <a className="btn" href="/dashboard">

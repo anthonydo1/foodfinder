@@ -26,17 +26,19 @@ function FriendRequests() {
         fetchData();
     }, []);
 
+    const friendRequest = (request) => (
+        <FriendRequest
+            first={request.first_name}
+            last={request.last_name}
+            username={request.username}
+            email={request.email}
+            key={request.username} />
+    );
+
     return (
         <div className="container">
             <AnimatedList animation={"zoom"}>
-                {friends.map(friend => (
-                    <FriendRequest
-                        first={friend.first_name}
-                        last={friend.last_name}
-                        username={friend.username}
-                        email={friend.email}
-                        key={friend.username} />
-                ))}
+                { friends.map(request => friendRequest(request)) }
             </AnimatedList>
         </div>
     );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FriendRequests from '../components/FriendRequests';
 import SearchFriendCard from '../components/SearchFriendCard';
+import FriendList from '../components/FriendList';
 import { AnimatedList } from 'react-animated-list';
 
 function Friends() {
@@ -31,17 +32,17 @@ function Friends() {
     };
     
     return (
-        <div className="container">
+        <div className="container mt-4">
             <div className="row">
 
-                <div className="col-5">
-                    <h2 className="text-white text-center mt-4 mb-4">Friend Requests</h2>
+                <div className="shadow rounded col-5">
+                    <h2 className="text-center mt-4 mb-4">Friend Requests</h2>
                     <FriendRequests />
                 </div>
 
-                <div className="col-7">
+                <div className="shadow rounded col-7" style={{minHeight: "600px"}}>
                     <div className="container mt-4 mb-4">
-                        <h2 className="text-white text-center mb-5">Search for people</h2>
+                        <h2 className="text-center mb-5">Search for people</h2>
                         <form>
                             <div className="form-row">
                                 <div className="col-10">
@@ -72,6 +73,12 @@ function Friends() {
                     </div>
                 </div>
 
+            </div>
+            <div className="row">
+                <div className="col-12 mt-4 rounded shadow" style={{minHeight: "200px"}}>
+                    <h2 className="text-center">Friend List</h2>
+                    <FriendList/>
+                </div>
             </div>
         </div>
     );

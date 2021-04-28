@@ -88,6 +88,20 @@ export async function getFriendRequests(id) {
     });
 };
 
+export async function getFriendList(id) {
+    const query = 
+        `SELECT first_name, last_name, username 
+        FROM FoodFinder.users 
+        WHERE id IN (SELECT DISTINCT follower_id FROM FoodFinder.friendships WHERE user_id = ?)`
+
+    return new Promise((resolve, reject) => {
+        connection.query(query, [id], (error, results) => {
+            if (error) console.log(error);
+            return error ? reject(error) : resolve(results);
+        });
+    });
+}
+
 export async function createFriendRequest(source, destination) {
     const query = `
         INSERT INTO FoodFinder.friendship_request (user_id, follower_id, date_requested) 

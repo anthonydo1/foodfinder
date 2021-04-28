@@ -21,7 +21,7 @@ function SearchFriendCard(props) {
     };
 
     return (
-        <div className="card bg-dark mt-2">
+        <div className="shadow card mt-2">
             <div className="card-body">
                 <div className="row">
                     <ReactRoundedImage
@@ -32,7 +32,7 @@ function SearchFriendCard(props) {
                         roundedSize="6"
                         hoverColor="#bbdefb"
                     />
-                    <div className="col text-white">
+                    <div className="col">
                         <h4 className="card-title">{props.first} {props.last}</h4>
                         <h6 className="card-subtitle mb-2 text-muted">{props.username}</h6>
                         <button 

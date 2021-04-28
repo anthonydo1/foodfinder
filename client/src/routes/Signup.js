@@ -30,12 +30,13 @@ function Signup() {
             }).then(res => {
                 if (res.status === 201) {
                     redirect();
-                } else if (res.status === 500) {
-                    setValidEmail(true);
-                    setValidUsername(false);
-                } else {
+                } else if (res.status === 501) {
+                    console.log("email taken");
                     setValidEmail(false);
                     setValidUsername(true);
+                } else {
+                    setValidEmail(true);
+                    setValidUsername(false);
                 }
             });
     }

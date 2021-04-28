@@ -27,7 +27,7 @@ function Search() {
     };
 
     return (
-        <header className="masthead text-white text-center">
+        <header className="shadow-lg masthead text-white text-center">
             <div className="overlay" />
             <div className="container">
                 <div className="row">
@@ -37,17 +37,17 @@ function Search() {
                     <div className="col-md-10 col-lg-10 mx-auto">
                         <form>
                             <div className="form-row">
-                                <div className="col-12 col-md-7 mb-2 mb-md-0">
+                                <div className="shadow-sm col-12 col-md-7 mb-2 mb-md-0 rounded-left bg-white">
                                     <input onChange={e => setQuery(e.target.value)} type="text" className="form-control form-control-lg" placeholder="Find a restaurant..." />
                                 </div>
-                                <div className="col-12 col-md-3 mb-2 mb-md-0">
+                                <div className="shadow-sm col-12 col-md-3 mb-2 mb-md-0 bg-white">
                                     <input onChange={e => setLocation(e.target.value)} type="text" className="form-control form-control-lg" placeholder="Location" />
                                 </div>
-                                <div className="col-12 col-md-2">
-                                    <button onClick={searchRestaurant} className="btn btn-block btn-lg btn-primary">
-                                        Search
-                                    </button>
-                                </div>
+                                
+                                <button onClick={searchRestaurant} className="shadow col-md-2 btn btn-block btn-lg btn-primary">
+                                    Search
+                                </button>
+                                
                             </div>
                         </form>
                     </div>

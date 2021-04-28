@@ -75,7 +75,14 @@ app.post('/friends/create', authenticateToken, async (req, res) => {
 });
 
 app.get('/friendlist', authenticateToken, async (req, res) => {
+    const source = await database.getIdByEmail(req.email);
 
+    if (source !== undefined) {
+        const data = await database.getFriendList(source);
+        res.json(data);
+    } else  {
+        res.sendStatus(400);
+    }
 });
 
 function authenticateToken(req, res, next) {
